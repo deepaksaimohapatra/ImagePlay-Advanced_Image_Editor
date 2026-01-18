@@ -1,4 +1,4 @@
-# ImagePlay React - Advanced Image Editor
+# ImagePlay - Advanced Image Editor
 
 A modern, feature-rich image editor built with React and Tailwind CSS. This is a React version of the original vanilla JavaScript image editor with the same powerful functionality and an enhanced UI.
 
