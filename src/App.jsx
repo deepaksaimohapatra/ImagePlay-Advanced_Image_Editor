@@ -97,23 +97,31 @@ export default function App() {
     saveHistory(defaultState, originalSrc);
   };
 
-  const undo = () => {
+  const undo = React.useCallback(() => {
     if (undoStack.length === 0) return;
     const lastEntry = undoStack[undoStack.length - 1];
     setRedoStack(prev => [...prev, { state, src: currentSrc }]);
     setUndoStack(prev => prev.slice(0, -1));
     setState(lastEntry.state);
     setCurrentSrc(lastEntry.src);
-  };
+  }, [undoStack, state, currentSrc]);
 
-  const redo = () => {
+  const redo = React.useCallback(() => {
     if (redoStack.length === 0) return;
     const nextEntry = redoStack[redoStack.length - 1];
     setUndoStack(prev => [...prev, { state, src: currentSrc }]);
     setRedoStack(prev => prev.slice(0, -1));
     setState(nextEntry.state);
     setCurrentSrc(nextEntry.src);
-  };
+  }, [redoStack, state, currentSrc]);
+
+  const downloadImage = React.useCallback(() => {
+    if (!currentSrc) return;
+    const a = document.createElement('a');
+    a.href = currentSrc;
+    a.download = 'edited-image.png';
+    a.click();
+  }, [currentSrc]);
 
   const startCrop = () => {
     if (!currentSrc) return;
@@ -167,14 +175,6 @@ export default function App() {
     });
   };
 
-  const downloadImage = () => {
-    if (!currentSrc) return;
-    const a = document.createElement('a');
-    a.href = currentSrc;
-    a.download = 'edited-image.png';
-    a.click();
-  };
-
   const downloadCompressed = () => {
     if (!compressedData) return;
     const a = document.createElement('a');
@@ -212,7 +212,7 @@ export default function App() {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [cropping, currentSrc]);
+  }, [cropping, undo, redo, downloadImage]);
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
