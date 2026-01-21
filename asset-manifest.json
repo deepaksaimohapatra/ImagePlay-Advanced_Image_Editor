@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ImagePlay-Advanced_Image_Editor/static/css/main.bd3d9183.css",
+    "main.js": "/ImagePlay-Advanced_Image_Editor/static/js/main.0653cb60.js",
+    "index.html": "/ImagePlay-Advanced_Image_Editor/index.html",
+    "main.bd3d9183.css.map": "/ImagePlay-Advanced_Image_Editor/static/css/main.bd3d9183.css.map",
+    "main.0653cb60.js.map": "/ImagePlay-Advanced_Image_Editor/static/js/main.0653cb60.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd3d9183.css",
+    "static/js/main.0653cb60.js"
+  ]
+}
